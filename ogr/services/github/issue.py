@@ -97,6 +97,7 @@ class GithubIssue(BaseIssue):
         private: Optional[bool] = None,
         labels: Optional[List[str]] = None,
     ) -> "Issue":
+        labels = labels or []
         github_issue = project.github_repo.create_issue(
             title=title, body=body, labels=labels
         )
