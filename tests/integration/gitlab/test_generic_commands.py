@@ -159,6 +159,14 @@ class GenericCommands(GitlabTests):
     def test_full_repo_name(self):
         assert self.project.full_repo_name == "packit-service/ogr-tests"
 
+    def test_project_exists(self):
+        assert self.project.exists()
+
+    def test_project_not_exists(self):
+        assert not self.service.get_project(
+            repo="some-non-existing-repo", namespace="some-none-existing-namespace"
+        ).exists()
+
     def test_get_owners(self):
         owners = self.project.get_owners()
         assert set(("lachmanfrantisek", "lbarcziova")).issubset(set(owners))
